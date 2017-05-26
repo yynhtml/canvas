@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title> canvas </title>
+		<script src="js/particleground.all.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			*{padding: 0;margin: 0;}
+			html{height: 100%;width: 100%;}
+			body{overflow: hidden;background: url(img/snow.jpg) no-repeat center;background-size: 100% 100%;height: 100%;width: 100%;}
+			#snow{height: 100%;width: 100%;}
+		</style>
+	</head>
+	<body>
+		<div id="snow">
+			
+		</div>
+		<script type="text/javascript">
+			
+			/*//构建canvas环境
+			var canvas = document.getElementById("canvas");
+			console.log(canvas);
+			var w = canvas.width = window.innerWidth;
+			var h = canvas.height = window.innerHeight;
+			
+			
+			//构建2D环境
+			var ctx = canvas.getContext("2d");//获取上下文*/
+			
+			new Particleground.snow("#snow")
+			
+		</script>
+	</body>
+</html>

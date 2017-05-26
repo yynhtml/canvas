@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title> canvas </title>
+		<style type="text/css">
+			*{padding: 0;margin: 0;}
+			body{overflow: hidden;background: steelblue;};
+		</style>
+	</head>
+	<body>
+		<canvas id="canvas"></canvas>
+		<script type="text/javascript">
+			
+			//构建canvas环境
+			var canvas = document.getElementById("canvas");
+			console.log(canvas);
+			var w = canvas.width = window.innerWidth;
+			var h = canvas.height = window.innerHeight;
+			
+			
+			//构建2D环境
+			var ctx = canvas.getContext("2d");//获取上下文
+			
+			
+			ctx.lineWidth = 3;
+			ctx.lineCap = "round";
+			ctx.strokeStyle = "gainsboro"
+			var arr = [];
+			var maxPort = 1000;
+			
+			for(var i = 0,len = maxPort;i < len;i++){
+				arr.push({
+					x: Math.random()*w,
+					y: Math.random()*h,
+					xs: (Math.random()-0.5)*20,
+					ys: Math.random()*10 + 10,
+					l:Math.random()*1
+				})
+			}
+			
+			var partciles = [];
+			//浅拷贝
+			for(var i = 0,len = arr.length;i < len;i++){
+				partciles[i] = arr[i];
+			}
+			console.log(partciles);
+			function draw(){
+				ctx.clearRect(0,0,w,h);
+				for(var i = 0,len = partciles.length;i < len;i++){
+					var p = partciles[i];
+					ctx.beginPath();
+						ctx.moveTo(p.x,p.y);
+						ctx.lineTo(p.x+p.xs+p.l,p.y+p.ys+p.l);
+						ctx.stroke();
+					ctx.closePath();
+				}
+				move();
+				requestAnimationFrame(draw);
+			}
+			
+			function move(){
+				for(var i = 0,len = partciles.length;i < len;i++){
+					var p = partciles[i];
+					p.x += p.xs;
+					p.y += p.ys;
+					if(p.x>w||p.y>h||p.x<0){
+						p.x = Math.random()*w;
+						p.y = -20;
+					}
+				}
+			}
+			requestAnimationFrame(draw);
+		</script>
+	</body>
+</html>
